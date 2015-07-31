@@ -10,12 +10,21 @@ import org.apache.wicket.model.IModel;
  * Scroll to an anchor
  */
 public class NavbarScrollToAnchorAjaxLink<T> extends NavbarAjaxLink<T> {
-//  private static final Logger LOGGER = LoggerFactory.getLogger(NavbarScrollToAnchorAjaxLink.class);
 
   private final String anchorName;
 
+  public NavbarScrollToAnchorAjaxLink(String anchorName) {
+    super();
+    this.anchorName = anchorName;
+  }
+
   public NavbarScrollToAnchorAjaxLink(IModel<String> model, String anchorName) {
     super(model);
+    this.anchorName = anchorName;
+  }
+
+  public NavbarScrollToAnchorAjaxLink(String markupId, IModel<String> label, String anchorName) {
+    super(markupId, label);
     this.anchorName = anchorName;
   }
 
@@ -23,5 +32,4 @@ public class NavbarScrollToAnchorAjaxLink<T> extends NavbarAjaxLink<T> {
   public void onClick(AjaxRequestTarget ajaxRequestTarget) {
     ajaxRequestTarget.prependJavaScript("$('html,body').animate({scrollTop: $(\"a[name='\" + " + anchorName + " + \"']\").offset().top - 50}, 'slow');");
   }
-
 }
