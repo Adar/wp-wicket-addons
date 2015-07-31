@@ -30,6 +30,6 @@ public class NavbarScrollToAnchorAjaxLink<T> extends NavbarAjaxLink<T> {
 
   @Override
   public void onClick(AjaxRequestTarget ajaxRequestTarget) {
-    ajaxRequestTarget.prependJavaScript("$('html,body').animate({scrollTop: $(\"a[name='\" + " + anchorName + " + \"']\").offset().top - 50}, 'slow');");
+    ajaxRequestTarget.prependJavaScript("$('html,body').animate({scrollTop: $(\"a[name='" + anchorName + "']\").offset().top - 50}, 'slow');");
   }
 }
