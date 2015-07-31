@@ -1,5 +1,6 @@
 package de.webplatz.addons;
 
+import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
 import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameRemover;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.BootstrapAjaxLink;
 import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons;
@@ -12,12 +13,11 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.util.time.Duration;
 import org.springframework.context.MessageSource;
 
-import javax.tools.Tool;
 import java.util.Locale;
 
 /**
  * Created by chris on 29.07.15.
- *
+ * <p>
  * Help Link -> (?)
  */
 public class HelpLink extends BootstrapAjaxLink<String> {
@@ -25,10 +25,10 @@ public class HelpLink extends BootstrapAjaxLink<String> {
   private final PopoverConfig popoverConfig;
   private final String resourceBaseName;
   @SpringBean
-  MessageSource messageSource;
+  transient MessageSource messageSource;
 
   public HelpLink(String id, String resourceBaseName) {
-    super(id, new Model<String>(""), Buttons.Type.Link);
+    super(id, new Model<>(""), Buttons.Type.Link);
     this.popoverConfig = new PopoverConfig();
     this.resourceBaseName = resourceBaseName;
   }
@@ -43,7 +43,9 @@ public class HelpLink extends BootstrapAjaxLink<String> {
     add(new CssClassNameRemover("btn", "btn-link"));
     String labelText = this.messageSource.getMessage(this.resourceBaseName + ".label", new String[]{}, Locale.getDefault());
     String contentText = this.messageSource.getMessage(this.resourceBaseName + ".text", new String[]{}, Locale.getDefault());
-    add(new PopoverBehavior(new Model<String>(labelText), new Model<String>(contentText), this.popoverConfig));
+    add(new PopoverBehavior(new Model<>(labelText), new Model<>(contentText), this.popoverConfig));
+    add(new CssClassNameAppender("fa"));
+    add(new CssClassNameAppender("fa-question-circle"));
   }
 
   public HelpLink withAnimation() {

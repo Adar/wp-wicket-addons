@@ -4,15 +4,13 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameApp
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;import java.lang.Override;import java.lang.String;
 
 /**
  * Created by chris on 27.07.15.
  * <p>
  * NavbarBadgeDropDownButton
  */
-abstract public class NavbarBadgeDropDownButton extends NavbarDropDownButton {
+public abstract class NavbarBadgeDropDownButton extends NavbarDropDownButton {
   private Component basketBadge;
 
   public NavbarBadgeDropDownButton(IModel<String> model) {
