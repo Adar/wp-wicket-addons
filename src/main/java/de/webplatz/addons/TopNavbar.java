@@ -8,27 +8,26 @@ import java.util.List;
 
 public class TopNavbar extends Navbar {
   //  private static final Logger logger = LoggerFactory.getLogger(TopNavbar.class);
-  private Component basketBadge;
-  private List<AbstractLink> basketBadgeDomainLinkList;
-
+  private Component badgeLabel;
+  private List<AbstractLink> badgeDropDownLinkList;
 
   public TopNavbar(String componentId) {
     super(componentId);
   }
 
-  public Component getBasketBadge() {
-    return basketBadge;
+  public Component getBadgeLabel() {
+    return badgeLabel;
   }
 
-  public void setBasketBadge(Component basketBadge) {
-    this.basketBadge = basketBadge;
+  public void setBadgeLabel(Component badgeLabel) {
+    this.badgeLabel = badgeLabel;
   }
 
-  public List<AbstractLink> getBasketBadgeDomainLinkList() {
-    return basketBadgeDomainLinkList;
+  public List<AbstractLink> getBadgeDropDownLinkList() {
+    return badgeDropDownLinkList;
   }
 
-  public void setBasketBadgeDomainLinkList(List<AbstractLink> basketBadgeDomainLinkList) {
-    this.basketBadgeDomainLinkList = basketBadgeDomainLinkList;
+  public void setBadgeDropDownLinkList(List<AbstractLink> badgeDropDownLinkList) {
+    this.badgeDropDownLinkList = badgeDropDownLinkList;
   }
 }
