@@ -1,6 +1,7 @@
 package de.webplatz.addons;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
+import de.agilecoders.wicket.core.markup.html.bootstrap.image.IconType;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
@@ -11,15 +12,19 @@ import org.apache.wicket.model.IModel;
  * NavbarBadgeDropDownButton
  */
 public abstract class NavbarBadgeDropDownButton extends NavbarDropDownButton {
-  private Component basketBadge;
+  private Component badgeLabel;
 
   public NavbarBadgeDropDownButton(IModel<String> model) {
     super(model);
     this.setRenderBodyOnly(false);
   }
 
-  public Component getBasketBadge() {
-    return this.basketBadge;
+  public NavbarBadgeDropDownButton(IModel<String> model, IModel<IconType> iconTypeModel) {
+    super(model, iconTypeModel);
+  }
+
+  public Component getBadgeLabel() {
+    return this.badgeLabel;
   }
 
   @Override
@@ -27,7 +32,7 @@ public abstract class NavbarBadgeDropDownButton extends NavbarDropDownButton {
     Component label = super.newButtonLabel(markupId, labelModel);
     label.setRenderBodyOnly(false);
     label.add(new CssClassNameAppender("badge"));
-    this.basketBadge = label;
+    this.badgeLabel = label;
     return label;
   }
 }
