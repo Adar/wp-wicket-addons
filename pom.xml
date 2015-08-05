@@ -12,7 +12,6 @@
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.debug>true</maven.compiler.debug>
         <bootstrap.version>0.10.2</bootstrap.version>
         <wicket.version>7.0.0</wicket.version>
         <spring.version>4.1.6.RELEASE</spring.version>
