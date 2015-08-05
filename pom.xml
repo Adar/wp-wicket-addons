@@ -20,6 +20,7 @@
     </properties>
 
     <scm>
+        <url>https://github.com/Adar/wp-wicket-addons.git</url>
         <connection>scm:git:ssh://git@web-platz.de/wpapi.git</connection>
         <developerConnection>scm:git:ssh://git@web-platz.de/wpapi.git</developerConnection>
         <tag>HEAD</tag>
