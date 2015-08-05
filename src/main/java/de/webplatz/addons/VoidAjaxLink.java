@@ -2,7 +2,7 @@ package de.webplatz.addons;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.model.IModel;import java.lang.Override;import java.lang.String;
+import org.apache.wicket.model.IModel;
 
 /**
  * Created by chris on 03.08.15.
