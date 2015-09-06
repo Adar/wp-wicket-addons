@@ -20,7 +20,7 @@
         <connection>scm:git:git://github.com/Adar/wp-wicket-addons.git</connection>
         <developerConnection>scm:git:git@github.com:Adar/wp-wicket-addons.git</developerConnection>
         <url>http://github.com/Adar/wp-wicket-addons</url>
-        <tag>HEAD</tag>
+        <tag>v&lt;</tag>
     </scm>
 
     <developers>
