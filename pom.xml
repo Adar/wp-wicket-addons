@@ -12,8 +12,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <bootstrap.version>0.10.2</bootstrap.version>
         <wicket.version>7.0.0</wicket.version>
-        <spring.version>4.1.6.RELEASE</spring.version>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
     </properties>
 
     <scm>
@@ -45,24 +43,44 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-spring</artifactId>
-            <version>${wicket.version}</version>
-        </dependency>
-        <dependency>
             <groupId>de.agilecoders.wicket</groupId>
             <artifactId>wicket-bootstrap-core</artifactId>
             <version>${bootstrap.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-core</artifactId>
+            <version>${wicket.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.wicket</groupId>
+            <artifactId>wicket-util</artifactId>
+            <version>${wicket.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.qulice</groupId>
+                <artifactId>qulice-maven-plugin</artifactId>
+                <version>0.14.2</version>
+                <configuration>
+                    <license>file:${basedir}/LICENSE.txt</license>
+                    <excludes>
+                        <exclude>duplicatefinder:.*</exclude>
+                        <exclude>cobertura:.*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>instrument</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
