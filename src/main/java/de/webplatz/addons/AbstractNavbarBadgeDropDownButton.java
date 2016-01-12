@@ -5,8 +5,6 @@ package de.webplatz.addons;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.behavior.CssClassNameAppender;
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarDropDownButton;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 
@@ -61,26 +59,4 @@ public abstract class AbstractNavbarBadgeDropDownButton
         return label;
     }
 
-    /**
-     * Write Object.
-     *
-     * @param stream Stream to write to.
-     * @throws java.io.IOException if stream fails.
-     */
-    private void writeObject(final ObjectOutputStream stream)
-        throws java.io.IOException {
-        throw new java.io.NotSerializableException(getClass().getName());
-    }
-
-    /**
-     * Read Object.
-     *
-     * @param stream Stream to read from.
-     * @throws java.io.IOException if stream fails.
-     * @throws ClassNotFoundException if class read is invalid.
-     */
-    private void readObject(final ObjectInputStream stream)
-        throws java.io.IOException, ClassNotFoundException {
-        throw new java.io.NotSerializableException(getClass().getName());
-    }
 }

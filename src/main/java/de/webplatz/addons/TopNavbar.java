@@ -4,8 +4,6 @@
 package de.webplatz.addons;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.List;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -64,26 +62,4 @@ public class TopNavbar extends Navbar {
         return this.linklist;
     }
 
-    /**
-     * Write Object.
-     *
-     * @param stream Stream to write to.
-     * @throws java.io.IOException if stream fails.
-     */
-    private void writeObject(final ObjectOutputStream stream)
-        throws java.io.IOException {
-        throw new java.io.NotSerializableException(getClass().getName());
-    }
-
-    /**
-     * Read Object.
-     *
-     * @param stream Stream to read from.
-     * @throws java.io.IOException if stream fails.
-     * @throws ClassNotFoundException if class read is invalid.
-     */
-    private void readObject(final ObjectInputStream stream)
-        throws java.io.IOException, ClassNotFoundException {
-        throw new java.io.NotSerializableException(getClass().getName());
-    }
 }
