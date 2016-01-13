@@ -4,7 +4,7 @@
 
     <groupId>de.webplatz</groupId>
     <artifactId>wp-wicket-addons</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>1.6-SNAPSHOT</version>
     <name>wp-wicket-addons</name>
 
     <properties>
