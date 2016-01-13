@@ -19,9 +19,13 @@ import org.apache.wicket.model.IModel;
 public abstract class AbstractNavbarBadgeDropDownButton
     extends NavbarDropDownButton {
     /**
+     * Version UID.
+     */
+    private static final long serialVersionUID = 3735517209368813452L;
+    /**
      * Badge Label.
      */
-    private transient Component badgelabel;
+    private Component badgelabel;
 
     /**
      * Construct.
@@ -39,6 +43,15 @@ public abstract class AbstractNavbarBadgeDropDownButton
      */
     public final Component getBadgelabel() {
         return this.badgelabel;
+    }
+
+    /**
+     * Set badge label.
+     *
+     * @param label Badge label.
+     */
+    public final void setBadgelabel(final Component label) {
+        this.badgelabel = label;
     }
 
     /**

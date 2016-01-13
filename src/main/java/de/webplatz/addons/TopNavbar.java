@@ -4,9 +4,6 @@
 package de.webplatz.addons;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.List;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -24,10 +21,6 @@ public class TopNavbar extends Navbar {
      * Serial Version UID.
      */
     private static final long serialVersionUID = -3725636639523022220L;
-    /**
-     * Mutex.
-     */
-    private static final Object MUTEX = new Object();
     /**
      * Badge Label.
      */
@@ -87,38 +80,4 @@ public class TopNavbar extends Navbar {
         this.linklist = list;
     }
 
-    /**
-     * Read object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     * @throws ClassNotFoundException if class not found.
-     */
-    @SuppressWarnings("unchecked")
-    private void readObject(final ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        synchronized (MUTEX) {
-            stream.defaultReadObject();
-            stream.readInt();
-            this.label = (Component) stream.readObject();
-        }
-    }
-
-    /**
-     * Write object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     */
-    private void writeObject(final ObjectOutputStream stream)
-        throws IOException {
-        synchronized (MUTEX) {
-            stream.defaultWriteObject();
-            stream.writeObject(this.getLabel());
-            stream.writeInt(this.linklist.size());
-            for (final AbstractLink components : this.linklist) {
-                stream.writeObject(components);
-            }
-        }
-    }
 }

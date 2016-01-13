@@ -10,9 +10,6 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons;
 import de.agilecoders.wicket.core.markup.html.bootstrap.components.PopoverBehavior;
 import de.agilecoders.wicket.core.markup.html.bootstrap.components.PopoverConfig;
 import de.agilecoders.wicket.core.markup.html.bootstrap.components.TooltipConfig;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.time.Duration;
@@ -37,10 +34,6 @@ public class HelpLink extends BootstrapAjaxLink<String> {
      * Serial version UID.
      */
     private static final long serialVersionUID = -4587985046907677156L;
-    /**
-     * Mutex.
-     */
-    private static final Object MUTEX = new Object();
     /**
      * Text.
      */
@@ -208,37 +201,5 @@ public class HelpLink extends BootstrapAjaxLink<String> {
      */
     public final void setLabel(final String value) {
         this.label = value;
-    }
-
-    /**
-     * Read object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     * @throws ClassNotFoundException if class not found.
-     */
-    private void readObject(final ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        synchronized (MUTEX) {
-            stream.defaultReadObject();
-            stream.readObject();
-            this.label = (String) stream.readObject();
-            this.text = (String) stream.readObject();
-        }
-    }
-
-    /**
-     * Write object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     */
-    private void writeObject(final ObjectOutputStream stream)
-        throws IOException {
-        synchronized (MUTEX) {
-            stream.defaultWriteObject();
-            stream.writeObject(this.getLabel());
-            stream.writeObject(this.getText());
-        }
     }
 }

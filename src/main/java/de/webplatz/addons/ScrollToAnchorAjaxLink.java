@@ -3,9 +3,6 @@
  */
 package de.webplatz.addons;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
 import org.apache.wicket.model.IModel;
@@ -24,10 +21,6 @@ public class ScrollToAnchorAjaxLink<T> extends AjaxLink<T> {
      * Serial Version UID.
      */
     private static final long serialVersionUID = -3961769989136447178L;
-    /**
-     * Mutex.
-     */
-    private static final Object MUTEX = new Object();
     /**
      * Anchor where to scroll to.
      */
@@ -80,36 +73,6 @@ public class ScrollToAnchorAjaxLink<T> extends AjaxLink<T> {
      */
     public final void setAnchor(final String value) {
         this.anchor = value;
-    }
-
-    /**
-     * Read object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     * @throws ClassNotFoundException if class not found.
-     */
-    private void readObject(final ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        synchronized (MUTEX) {
-            stream.defaultReadObject();
-            stream.readObject();
-            this.anchor = (String) stream.readObject();
-        }
-    }
-
-    /**
-     * Write object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     */
-    private void writeObject(final ObjectOutputStream stream)
-        throws IOException {
-        synchronized (MUTEX) {
-            stream.defaultWriteObject();
-            stream.writeObject(this.getAnchor());
-        }
     }
 
 }

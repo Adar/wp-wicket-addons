@@ -4,9 +4,6 @@
 package de.webplatz.addons;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.NavbarAjaxLink;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.IModel;
 
@@ -25,10 +22,6 @@ public class NavbarScrollToAnchorAjaxLink<T> extends NavbarAjaxLink<T> {
      * Serial Version UID.
      */
     private static final long serialVersionUID = -8827197347714921011L;
-    /**
-     * Mutex.
-     */
-    private static final Object MUTEX = new Object();
     /**
      * Anchor name.
      */
@@ -83,33 +76,4 @@ public class NavbarScrollToAnchorAjaxLink<T> extends NavbarAjaxLink<T> {
         this.anchor = value;
     }
 
-    /**
-     * Read object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     * @throws ClassNotFoundException if class not found.
-     */
-    private void readObject(final ObjectInputStream stream)
-        throws IOException, ClassNotFoundException {
-        synchronized (MUTEX) {
-            stream.defaultReadObject();
-            stream.readObject();
-            this.anchor = (String) stream.readObject();
-        }
-    }
-
-    /**
-     * Write object.
-     *
-     * @param stream Stream.
-     * @throws IOException if io fails.
-     */
-    private void writeObject(final ObjectOutputStream stream)
-        throws IOException {
-        synchronized (MUTEX) {
-            stream.defaultWriteObject();
-            stream.writeObject(this.getAnchor());
-        }
-    }
 }
