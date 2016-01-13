@@ -101,11 +101,15 @@ public class TopNavbar extends Navbar {
         synchronized (MUTEX) {
             stream.defaultReadObject();
             this.label = (Component) stream.readObject();
-            this.linklist = new ArrayList<>(stream.readInt());
-            AbstractLink streamlink;
-            while ((streamlink = (AbstractLink) stream.readObject()) != null) {
-                this.linklist.add(streamlink);
-            }
+//            this.linklist = new ArrayList<>(stream.readInt());
+//            while (true) {
+//                final AbstractLink streamlink =
+//                    (AbstractLink) stream.readObject();
+//                if (streamlink == null) {
+//                    break;
+//                }
+//                this.linklist.add(streamlink);
+//            }
         }
     }
 
