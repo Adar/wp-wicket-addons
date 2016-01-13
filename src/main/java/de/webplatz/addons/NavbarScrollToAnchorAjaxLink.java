@@ -30,13 +30,12 @@ public class NavbarScrollToAnchorAjaxLink<T> extends NavbarAjaxLink<T> {
     /**
      * Construct with markup id, label and anchor name.
      *
-     * @param markupid Wicket Markup ID.
      * @param label Label.
      * @param anchor Anchor which to scroll to.
      */
-    public NavbarScrollToAnchorAjaxLink(final String markupid,
-        final IModel<String> label, final String anchor) {
-        super(markupid, label);
+    public NavbarScrollToAnchorAjaxLink(final IModel<String> label,
+                                        final String anchor) {
+        super(label);
         this.anchor = anchor;
     }
 
