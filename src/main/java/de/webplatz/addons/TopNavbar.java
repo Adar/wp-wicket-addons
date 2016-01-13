@@ -9,7 +9,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
 
@@ -103,9 +102,10 @@ public class TopNavbar extends Navbar {
             stream.defaultReadObject();
             this.label = (Component) stream.readObject();
             this.linklist = new ArrayList<>(stream.readInt());
-            final List<AbstractLink> tmp =
-                (List<AbstractLink>) stream.readObject();
-            this.linklist.addAll(tmp.stream().collect(Collectors.toList()));
+            AbstractLink streamlink;
+            while ((streamlink = (AbstractLink) stream.readObject()) != null) {
+                this.linklist.add(streamlink);
+            }
         }
     }
 
