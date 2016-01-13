@@ -101,7 +101,6 @@ public class TopNavbar extends Navbar {
         throws IOException, ClassNotFoundException {
         synchronized (MUTEX) {
             stream.defaultReadObject();
-            stream.readObject();
             this.label = (Component) stream.readObject();
             this.linklist = new ArrayList<>(stream.readInt());
             final List<AbstractLink> tmp =
