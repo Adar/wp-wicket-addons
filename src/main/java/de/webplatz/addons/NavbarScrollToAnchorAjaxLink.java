@@ -34,7 +34,7 @@ public class NavbarScrollToAnchorAjaxLink<T> extends NavbarAjaxLink<T> {
      * @param anchor Anchor which to scroll to.
      */
     public NavbarScrollToAnchorAjaxLink(final IModel<String> label,
-                                        final String anchor) {
+        final String anchor) {
         super(label);
         this.anchor = anchor;
     }
