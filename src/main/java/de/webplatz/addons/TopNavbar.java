@@ -99,6 +99,7 @@ public class TopNavbar extends Navbar {
         throws IOException, ClassNotFoundException {
         synchronized (MUTEX) {
             stream.defaultReadObject();
+            stream.readInt();
             this.label = (Component) stream.readObject();
         }
     }
