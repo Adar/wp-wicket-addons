@@ -4,7 +4,7 @@
 
     <groupId>de.webplatz</groupId>
     <artifactId>wp-wicket-addons</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>1.7</version>
     <name>wp-wicket-addons</name>
 
     <properties>
@@ -18,7 +18,7 @@
         <connection>scm:git:git://github.com/Adar/wp-wicket-addons.git</connection>
         <developerConnection>scm:git:git@github.com:Adar/wp-wicket-addons.git</developerConnection>
         <url>http://github.com/Adar/wp-wicket-addons</url>
-        <tag>v&lt;</tag>
+        <tag>v1.7</tag>
     </scm>
 
     <developers>
