@@ -30,12 +30,12 @@
 
     <distributionManagement>
         <snapshotRepository>
-            <id>nexus-release</id>
+            <id>wpnexus-releases</id>
             <name>Internal Snapshots</name>
             <url>http://web-platz.de:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
         <repository>
-            <id>nexus-release</id>
+            <id>wpnexus-releases</id>
             <name>Internal Releases</name>
             <url>http://web-platz.de:8081/nexus/content/repositories/releases/</url>
         </repository>
@@ -178,7 +178,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <serverId>nexus-release</serverId>
+                            <serverId>wpnexus-releases</serverId>
                             <nexusUrl>http://web-platz.de:8081/nexus/</nexusUrl>
                             <skipStaging>true</skipStaging>
                         </configuration>
