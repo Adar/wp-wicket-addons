@@ -7,7 +7,6 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -90,6 +89,15 @@ public class TopNavbar extends Navbar {
 
     /**
      * Read object.
+     *            this.linklist = new ArrayList<>(stream.readInt());
+     *            while (true) {
+     *                final AbstractLink streamlink =
+     *                    (AbstractLink) stream.readObject();
+     *              if (streamlink == null) {
+     *                    break;
+     *                }
+     *                this.linklist.add(streamlink);
+     *            }
      *
      * @param stream Stream.
      * @throws IOException if io fails.
@@ -101,15 +109,6 @@ public class TopNavbar extends Navbar {
         synchronized (MUTEX) {
             stream.defaultReadObject();
             this.label = (Component) stream.readObject();
-//            this.linklist = new ArrayList<>(stream.readInt());
-//            while (true) {
-//                final AbstractLink streamlink =
-//                    (AbstractLink) stream.readObject();
-//                if (streamlink == null) {
-//                    break;
-//                }
-//                this.linklist.add(streamlink);
-//            }
         }
     }
 
