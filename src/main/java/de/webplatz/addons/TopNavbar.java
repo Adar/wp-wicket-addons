@@ -89,15 +89,6 @@ public class TopNavbar extends Navbar {
 
     /**
      * Read object.
-     *            this.linklist = new ArrayList<>(stream.readInt());
-     *            while (true) {
-     *                final AbstractLink streamlink =
-     *                    (AbstractLink) stream.readObject();
-     *              if (streamlink == null) {
-     *                    break;
-     *                }
-     *                this.linklist.add(streamlink);
-     *            }
      *
      * @param stream Stream.
      * @throws IOException if io fails.
