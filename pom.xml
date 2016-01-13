@@ -48,8 +48,12 @@
             <version>${bootstrap.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
+                    <artifactId>commons-logging-api</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -59,8 +63,12 @@
             <version>${wicket.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
+                    <artifactId>commons-logging-api</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -70,8 +78,23 @@
             <version>${wicket.version}</version>
             <exclusions>
                 <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
+                    <artifactId>commons-logging-api</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.cobertura</groupId>
+            <artifactId>cobertura</artifactId>
+            <version>1.9.4.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
