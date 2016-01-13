@@ -10,7 +10,9 @@ import de.agilecoders.wicket.core.markup.html.bootstrap.button.Buttons;
 import de.agilecoders.wicket.core.markup.html.bootstrap.components.PopoverBehavior;
 import de.agilecoders.wicket.core.markup.html.bootstrap.components.PopoverConfig;
 import de.agilecoders.wicket.core.markup.html.bootstrap.components.TooltipConfig;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.time.Duration;
@@ -36,31 +38,35 @@ public class HelpLink extends BootstrapAjaxLink<String> {
      */
     private static final long serialVersionUID = -4587985046907677156L;
     /**
+     * Mutex.
+     */
+    private static final Object MUTEX = new Object();
+    /**
+     * Text.
+     */
+    private String text;
+    /**
+     * Label.
+     */
+    private String label;
+    /**
      * Popover Config.
      */
-    private final transient PopoverConfig popconfig;
-    /**
-     * Resource base name.
-     */
-    private final transient String resource;
-    /**
-     * Message source.
-     */
-    private final transient ResourceBundle messagesource;
+    private PopoverConfig popconfig;
 
     /**
      * Help Link.
      *
      * @param markupid Wicket id.
-     * @param resource Resource base name.
-     * @param messagesource Message source.
+     * @param label Link label.
+     * @param text DIV text.
      */
-    public HelpLink(final String markupid, final String resource,
-        final ResourceBundle messagesource) {
+    public HelpLink(final String markupid, final String label,
+        final String text) {
         super(markupid, new Model<>(""), Buttons.Type.Link);
         this.popconfig = new PopoverConfig();
-        this.resource = resource;
-        this.messagesource = messagesource;
+        this.label = label;
+        this.text = text;
     }
 
     /**
@@ -79,16 +85,9 @@ public class HelpLink extends BootstrapAjaxLink<String> {
         );
         add(
             new PopoverBehavior(
-                new Model<>(
-                    this.messagesource.getString(
-                        String.format("%s.label", this.resource)
-                    )
-                ),
-                new Model<>(
-                    this.messagesource.getString(
-                        String.format("%s.text", this.resource)
-                    )
-                ), this.popconfig
+                new Model<>(this.label),
+                new Model<>(this.text),
+                this.popconfig
             )
         );
         add(new CssClassNameAppender("fa"));
@@ -157,4 +156,89 @@ public class HelpLink extends BootstrapAjaxLink<String> {
         // nothing to do
     }
 
+    /**
+     * Get popconfig.
+     *
+     * @return Popover Config.
+     */
+    public final PopoverConfig getPopconfig() {
+        return this.popconfig;
+    }
+
+    /**
+     * Set popconfig.
+     *
+     * @param config Popover config.
+     */
+    public final void setPopconfig(final PopoverConfig config) {
+        this.popconfig = config;
+    }
+
+    /**
+     * Get text.
+     *
+     * @return Text.
+     */
+    public final String getText() {
+        return this.text;
+    }
+
+    /**
+     * Set text.
+     *
+     * @param value Description.
+     */
+    public final void setText(final String value) {
+        this.text = value;
+    }
+
+    /**
+     * Get label.
+     *
+     * @return Label.
+     */
+    public final String getLabel() {
+        return this.label;
+    }
+
+    /**
+     * Set label.
+     *
+     * @param value Label.
+     */
+    public final void setLabel(final String value) {
+        this.label = value;
+    }
+
+    /**
+     * Read object.
+     *
+     * @param stream Stream.
+     * @throws IOException if io fails.
+     * @throws ClassNotFoundException if class not found.
+     */
+    private void readObject(final ObjectInputStream stream)
+        throws IOException, ClassNotFoundException {
+        synchronized (MUTEX) {
+            stream.defaultReadObject();
+            stream.readObject();
+            this.label = (String) stream.readObject();
+            this.text = (String) stream.readObject();
+        }
+    }
+
+    /**
+     * Write object.
+     *
+     * @param stream Stream.
+     * @throws IOException if io fails.
+     */
+    private void writeObject(final ObjectOutputStream stream)
+        throws IOException {
+        synchronized (MUTEX) {
+            stream.defaultWriteObject();
+            stream.writeObject(this.getLabel());
+            stream.writeObject(this.getText());
+        }
+    }
 }

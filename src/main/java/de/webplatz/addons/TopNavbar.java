@@ -4,6 +4,9 @@
 package de.webplatz.addons;
 
 import de.agilecoders.wicket.core.markup.html.bootstrap.navbar.Navbar;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -22,13 +25,17 @@ public class TopNavbar extends Navbar {
      */
     private static final long serialVersionUID = -3725636639523022220L;
     /**
+     * Mutex.
+     */
+    private static final Object MUTEX = new Object();
+    /**
      * Badge Label.
      */
-    private final transient Component label;
+    private Component label;
     /**
      * Badge Link List.
      */
-    private final transient List<AbstractLink> linklist;
+    private List<AbstractLink> linklist;
 
     /**
      * Construct.
@@ -54,6 +61,15 @@ public class TopNavbar extends Navbar {
     }
 
     /**
+     * Set label.
+     *
+     * @param value Label.
+     */
+    public final void setLabel(final Component value) {
+        this.label = value;
+    }
+
+    /**
      * Get badge link list.
      *
      * @return Link List.
@@ -62,4 +78,45 @@ public class TopNavbar extends Navbar {
         return this.linklist;
     }
 
+    /**
+     * Set link list.
+     *
+     * @param list Link list.
+     */
+    public final void setLinklist(final List<AbstractLink> list) {
+        this.linklist = list;
+    }
+
+    /**
+     * Read object.
+     *
+     * @param stream Stream.
+     * @throws IOException if io fails.
+     * @throws ClassNotFoundException if class not found.
+     */
+    @SuppressWarnings("unchecked")
+    private void readObject(final ObjectInputStream stream)
+        throws IOException, ClassNotFoundException {
+        synchronized (MUTEX) {
+            stream.defaultReadObject();
+            stream.readObject();
+            this.label = (Component) stream.readObject();
+            this.linklist = (List<AbstractLink>) stream.readObject();
+        }
+    }
+
+    /**
+     * Write object.
+     *
+     * @param stream Stream.
+     * @throws IOException if io fails.
+     */
+    private void writeObject(final ObjectOutputStream stream)
+        throws IOException {
+        synchronized (MUTEX) {
+            stream.defaultWriteObject();
+            stream.writeObject(this.getLabel());
+            stream.writeObject(this.getLinklist());
+        }
+    }
 }
