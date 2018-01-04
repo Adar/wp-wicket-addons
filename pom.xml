@@ -15,9 +15,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git://github.com/Adar/wp-wicket-addons.git</connection>
-        <developerConnection>scm:git:git@github.com:Adar/wp-wicket-addons.git</developerConnection>
-        <url>http://github.com/Adar/wp-wicket-addons</url>
+        <connection>scm:git:git://github.com/c9pr3/wp-wicket-addons.git</connection>
+        <developerConnection>scm:git:git@github.com:c9pr3/wp-wicket-addons.git</developerConnection>
+        <url>http://github.com/c9pr3/wp-wicket-addons</url>
         <tag>v&lt;</tag>
     </scm>
 
